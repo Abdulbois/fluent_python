@@ -126,4 +126,4 @@ def load_db(db):
             key = '{}.{}'.format(record_type, record['serial'])
             record['serial'] = key
             db[key] = factory(**record)
-# END SCHEDULE2_LOAD
+# END SCHEDULE2_LOAD!
