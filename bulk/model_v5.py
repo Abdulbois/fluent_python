@@ -6,9 +6,10 @@ class AutoStorage:
 
     def __init__(self):
         cls = self.__class__
-        prefix = self.__class__.__name__
+        prefix = cls.__name__
         index = cls.__counter
         self.storage_name = '_{}#{}'.format(prefix, index)
+        cls.__counter += 1
 
     def __get__(self, instance, owner):
         return getattr(instance, self.storage_name)
@@ -20,6 +21,7 @@ class AutoStorage:
 class Validated(abc.ABC, AutoStorage):
     def __set__(self, instance, value):
         value = self.validated(instance, value)
+        super().__set__(instance, value)
 
     @abc.abstractmethod
     def validated(self, instance, value):
